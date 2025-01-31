@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy.integrate as spi
 
 def func(x):
     return np.log(x)
@@ -16,6 +17,11 @@ under_curve_points = np.sum(under_curve) / N
 integral =  box_square * under_curve_points
 
 print(f"Оцінка інтегралу методом Монте-Карло: {integral:.5f}")
+# Обчислення інтеграла аналітично
+result, error = spi.quad(func, a, b)
+
+print("Оцінка інтегралу аналітичним методом: ", result)
+print("Точність результату: ", error)
 
 # Побудова графіка
 x_vals = np.linspace(a, b, 100)
